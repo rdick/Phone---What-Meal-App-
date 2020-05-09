@@ -1,16 +1,16 @@
 import React from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Text, Button, StyleSheet, FlatList } from 'react-native'
+
+import { CATEGORIES } from '../data/dummy-data'
+
+const renderGridItem = (itemData) => {
+    return <View><Text>{itemData.item.title}</Text></View>
+}
 
 const CategoriesScreen = props => {
 
     return (
-        <View style={styles.screen}>
-            <Text>The Categories Screen</Text>
-            <Button title="Go to Meals!" onPress={() => {
-                props.navigation.navigate({ routeName: 'CategoryMeals' })
-                // Alternatively -> you can write props.navigation.navigate({'CategoryMeals'})
-            }} />
-        </View>
+        <FlatList keyExtractor={(item, index) => item.id} data={CATEGORIES} renderItem={renderGridItem} numColumns={2} />
 
     )
 }
